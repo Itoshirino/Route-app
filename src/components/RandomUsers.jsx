@@ -8,7 +8,7 @@ const RandomUsers = () => {
   const [isFirstLoad, setIsFirstLoad] = useState({});
 
   const findNewUsers = async () => {
-    if (isFirstLoad) setLoading({});
+    if (isFirstLoad) setLoading(true);
 
     try {
       const response = await axios.get(api);
@@ -33,7 +33,7 @@ const RandomUsers = () => {
     }, 15000);
 
     return () => clearInterval(interval);
-  }, [api]);
+  }, []);
 
   return (
     <div className="container3">
