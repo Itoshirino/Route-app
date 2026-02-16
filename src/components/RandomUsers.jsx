@@ -33,7 +33,7 @@ const RandomUsers = () => {
     }, 15000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [findNewUsers, api]);
 
   return (
     <div className="container3">
