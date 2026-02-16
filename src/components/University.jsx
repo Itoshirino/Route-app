@@ -9,7 +9,6 @@ const University = () => {
   const [country, setCountry] = useState("United Kingdom");
   const [data, setData] = useState([]);
   const api = "http://universities.hipolabs.com/search?name=middle";
-  const key = "2f8f4d89-b15ac680-b4bc7b7e-ed2dd23c";
 
   //Getapi
   useEffect(() => {
