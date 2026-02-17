@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 const RandomUsers = () => {
   const api = "https://randomuser.me/api/?results=20";
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState({});
-  const [isFirstLoad, setIsFirstLoad] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
-  const findNewUsers = async () => {
+  const findNewUsers = useCallback(async () => {
     if (isFirstLoad) setLoading(true);
 
     try {
@@ -22,8 +22,9 @@ const RandomUsers = () => {
       }
     } catch (error) {
       console.error(error);
+      if (isFirstLoad) setLoading(false);
     }
-  };
+  }, [api, isFirstLoad]);
 
   useEffect(() => {
     findNewUsers();
@@ -33,7 +34,7 @@ const RandomUsers = () => {
     }, 15000);
 
     return () => clearInterval(interval);
-  }, [findNewUsers, api]);
+  }, [findNewUsers]);
 
   return (
     <div className="container3">
